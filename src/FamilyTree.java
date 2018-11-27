@@ -1,6 +1,7 @@
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FamilyTree {
@@ -99,13 +100,18 @@ public class FamilyTree {
             boolean decendancy = decendants(nameOne, nameTwo);
             if (!decendancy) {
                 ArrayList<Person> checkRelated = relation(nameOne, nameTwo);
+                String[] arrayCheck = new String[checkRelated.size()];
+                for (int i = 0; i < checkRelated.size(); i++) {
+                    arrayCheck[i] = checkRelated.get(i).getName();
+                }
+                Arrays.sort(arrayCheck);
                 if (checkRelated.isEmpty()) {
               //      System.out.println("unrelated");
                     output.println("unrelated");
                 } else {
-                    for (int i = 0; i < checkRelated.size(); i++) {
+                    for (int i = 0; i < arrayCheck.length; i++) {
                 //        System.out.print(checkRelated.get(i).getName() + " ");
-                        output.print(checkRelated.get(i).getName() + " ");
+                        output.print(arrayCheck[i] + " ");
                     }
                 }
             }
